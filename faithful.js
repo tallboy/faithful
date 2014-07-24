@@ -33,7 +33,9 @@
 
 			if (hasOverlay === 0 && time === 0) {
 				activityEl.click();
-				setTimeout(function(){simClickThePopup()}, 2000);
+				setTimeout(function(){
+					simClickThePopup();
+				}, 2000);
 			}
 		});
 
