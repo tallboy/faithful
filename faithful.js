@@ -14,6 +14,12 @@
 		}
 	};
 
+	var simClickThePopup = function() {
+		var popUpLink = $('.activityhyperlink');
+		popUpLink.click();
+		$('.modal').hide();
+	};
+
 	var releasetheKraken = function() {
 		console.log('Kraken released');
 		var activityElements = $('div[data-target="#ActivityPopup"]');
@@ -26,6 +32,7 @@
 
 			if (hasOverlay === 0 && time === 0) {
 				activityEl.click();
+				setTimeout(function(){simClickThePopup()}, 2000);
 			}
 		});
 
