@@ -9,7 +9,7 @@ javascript:(function(document){
 	}
 
 	var script = document.createElement("script");
-	script.src = "https://rawgit.github.com/tallboy/faithful/master/faithful.js";
+	script.src = "https://rawgit.com/tallboy/faithful/master/faithful.js";
 	document.getElementsByTagName("head")[0].appendChild(script);
 
 }(document));
