@@ -16,8 +16,9 @@
 
 	var simClickThePopup = function() {
 		var popUpLink = $('.activityhyperlink');
+		console.log('popUpLink', popUpLink);
 		popUpLink.click();
-		$('.modal').hide();
+		$('.modal').modal('hide');
 	};
 
 	var releasetheKraken = function() {
