@@ -14,10 +14,23 @@
 		}
 	};
 
-	var simClickThePopup = function() {
-		var popUpLink = $('.activityhyperlink');
-		console.log('popUpLink', popUpLink);
-		popUpLink.click();
+	var modalAction = function() {
+		var modal = $('.modal');
+		var type = modal.find('.activitypopup-left').text();
+		type = type.toLowerCase();
+		
+		console.log('TYPEEEE', type);
+
+		switch (type) {
+			case 'read':
+			case 'watch':
+			case 'browse':
+				$('.activityhyperlink').click();
+				break;
+			default:
+				break;	
+		}
+
 		$('.modal').modal('hide');
 	};
 
@@ -31,10 +44,11 @@
 			var time = getTime(timeEl);
 			var hasOverlay = activityEl.find('.darkoverlay').length;
 
+			console.log('TIME: ', time, 'OVERLAY: ', hasOverlay);
 			if (hasOverlay === 0 && time === 0) {
 				activityEl.click();
 				setTimeout(function(){
-					simClickThePopup();
+					modalAction();
 				}, 2000);
 			}
 		});
