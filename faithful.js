@@ -57,7 +57,7 @@
 		$.each(activityElements, function(){
 			var activityEl = $(this);
 			var activityType = getActivityType(activityEl);
-			activityType = activityType.toLowerCase();
+			activityType = activityType.toLowerCase().trim();
 			console.log('TYPE', activityType);
 
 			switch (activityType) {
@@ -73,10 +73,8 @@
 				default:
 				break;	
 			}
-			
 		});
-
 	};
 
-	releasetheKraken();
+	setInterval(releasetheKraken(), 10000);
 }(window));
