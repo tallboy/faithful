@@ -25,9 +25,20 @@
 		console.log('*** Points added on refresh: ' + newScore + '***');
 	};
 
+	var clickLink = function(linkEl) {
+	  if (HTMLElement.prototype.click) {
+		var linkElCopy = $.extend(true, Object.create(linkEl), linkEl);
+		$(linkElCopy).attr('target', '_blank');
+		linkElCopy.click();
+	  } else {
+		window.open($(linkEl).attr('href'));
+	  }
+	};
+
 	var modalAction = function() {
 		var modal = $('.modal');
-		$('.activityhyperlink').click();
+		var linkEl = $('.activityhyperlink');
+		clickLink(linkEl);
 		$('.modal').modal('hide');
 
 		return true;
