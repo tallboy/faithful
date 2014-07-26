@@ -60,7 +60,7 @@
 			activityType = activityType.toLowerCase();
 			console.log('TYPE', activityType);
 
-			switch (type) {
+			switch (activityType) {
 				case 'read':
 				case 'watch':
 				case 'browse':
