@@ -1,5 +1,7 @@
 (function(window){
 
+	var newScore = 0;
+
 	var getScoreCount = function() {
 		var score = $('.yardCount').text();
 		return parseInt(score, 10);
@@ -14,43 +16,64 @@
 		}
 	};
 
+	var getActivityType = function(el) {
+		var description = el.find('.earn-pointActivity');
+		return description.text();
+	};
+
+	var setScoreToAdd = function() {
+		console.log('*** Points added on refresh: ' + newScore + '***');
+	};
+
 	var modalAction = function() {
 		var modal = $('.modal');
-		var type = modal.find('.activitypopup-left').text();
-		type = type.toLowerCase();
-		
-		console.log('TYPEEEE', type);
+		$('.activityhyperlink').click();
+		$('.modal').modal('hide');
 
-		switch (type) {
-			case 'read':
-			case 'watch':
-			case 'browse':
-				$('.activityhyperlink').click();
-				break;
-			default:
-				break;	
+		return true;
+	};
+
+	var openModal = function(el) {
+		var activityEl = el;
+		var timeEl = activityEl.find('.time').text();
+		var time = getTime(timeEl);
+		var hasOverlay = activityEl.find('.darkoverlay').length;
+
+		console.log('TIME: ', time, 'OVERLAY: ', hasOverlay);
+		if (hasOverlay === 0 && time === 0) {
+			activityEl.click();
+			setTimeout(function() {
+				modalAction();
+			}, 2000);
 		}
 
-		$('.modal').modal('hide');
+		return true;
 	};
 
 	var releasetheKraken = function() {
-		console.log('Kraken released');
+		
 		var activityElements = $('div[data-target="#ActivityPopup"]');
 
 		$.each(activityElements, function(){
 			var activityEl = $(this);
-			var timeEl = activityEl.find('.time').text();
-			var time = getTime(timeEl);
-			var hasOverlay = activityEl.find('.darkoverlay').length;
+			var activityType = getActivityType(activityEl);
+			activityType = activityType.toLowerCase();
+			console.log('TYPE', activityType);
 
-			console.log('TIME: ', time, 'OVERLAY: ', hasOverlay);
-			if (hasOverlay === 0 && time === 0) {
-				activityEl.click();
-				setTimeout(function(){
-					modalAction();
-				}, 2000);
+			switch (type) {
+				case 'read':
+				case 'watch':
+				case 'browse':
+				var openModalEvent = openModal(activityEl);
+				if (openModalEvent) {
+					newScore += 5;
+					setScoreToAdd();
+				}
+				break;
+				default:
+				break;	
 			}
+			
 		});
 
 	};
